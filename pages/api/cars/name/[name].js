@@ -1,9 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-const pool = require('../db/connection');
+const pool = require('../../db/connection');
 //localhost:3000/api/cars
+
 export default async function handler(req, res) {
   
-  const { name } = req.query;
+  const name  = req.query.name;
   try {
     const cars = await pool.query(
       "SELECT * FROM cars where user_id = (SELECT id from users where name = $1)",
